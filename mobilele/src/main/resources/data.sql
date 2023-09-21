@@ -20,9 +20,9 @@ insert into users (email, password, first_name, last_name, active, role_id, crea
     ('dummy4@gmail.com', 'topsecret', 'dummyFirstName4', 'dummyLastName4', true, 2, now(), now()),
     ('dummy5@gmail.com', 'topsecret', 'dummyFirstName5', 'dummyLastName5', true, 2, now(), now());
 insert into offers (description, created, engine, mileage, modified, price, transmission, year, model_id, user_id)
-    values ('someDummyText', now(), 3, 10000, now(), 100000, 2, 2023, 1, 1),
-    ('someDummyText', now(), 2, 5000, now(), 90000, 1, 2023, 2, 2),
-    ('someDummyText', now(), 4, 12000, now(), 80000, 2, 2023, 3, 3),
-    ('someDummyText', now(), 1, 8000, now(), 70000, 1, 2023, 4, 4),
-    ('someDummyText', now(), 1, 13000, now(), 60000, 1, 2023, 5, 5);
+    values ('someDummyText', now(), 2, 10000, now(), 100000, 1, 2023, 1, 1),
+    ('someDummyText', now(), 1, 5000, now(), 90000, 0, 2023, 2, 2),
+    ('someDummyText', now(), 3, 12000, now(), 80000, 1, 2023, 3, 3),
+    ('someDummyText', now(), 0, 8000, now(), 70000, 0, 2023, 4, 4),
+    ('someDummyText', now(), 0, 13000, now(), 60000, 0, 2023, 5, 5);
 
