@@ -1,4 +1,4 @@
-package org.softuni.mobilele.service;
+package org.softuni.mobilele.model.utils;
 import org.softuni.mobilele.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
