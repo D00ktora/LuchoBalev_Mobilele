@@ -1,35 +1,32 @@
 package org.softuni.mobilele.model.entity;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
+import jakarta.validation.constraints.NotNull;
+
+import javax.management.relation.Role;
+import java.time.LocalDateTime;
 
 @Entity
-public class UserEntity {
-
-  @Id
-  @GeneratedValue(strategy = GenerationType.IDENTITY)
-  private Long id;
-
+@Table(name = "users")
+public class UserEntity extends BaseEntity {
+  @NotNull
   private String email;
-
+  @NotNull
   private String password;
-
+  @NotNull
   private String firstName;
-
+  @NotNull
   private String lastName;
-
+  @NotNull
   private boolean active;
-
-  public Long getId() {
-    return id;
-  }
-
-  public UserEntity setId(Long id) {
-    this.id = id;
-    return this;
-  }
+  @NotNull
+  @ManyToOne
+  private UserRole role;
+  private String imageUrl;
+  @NotNull
+  private LocalDateTime created;
+  @NotNull
+  private LocalDateTime modified;
 
   public String getEmail() {
     return email;
@@ -73,6 +70,42 @@ public class UserEntity {
 
   public UserEntity setActive(boolean active) {
     this.active = active;
+    return this;
+  }
+
+  public String getImageUrl() {
+    return imageUrl;
+  }
+
+  public UserEntity setImageUrl(String imageUrl) {
+    this.imageUrl = imageUrl;
+    return this;
+  }
+
+  public LocalDateTime getCreated() {
+    return created;
+  }
+
+  public UserEntity setCreated(LocalDateTime created) {
+    this.created = created;
+    return this;
+  }
+
+  public LocalDateTime getModified() {
+    return modified;
+  }
+
+  public UserEntity setModified(LocalDateTime modified) {
+    this.modified = modified;
+    return this;
+  }
+
+  public UserRole getRole() {
+    return role;
+  }
+
+  public UserEntity setRole(UserRole role) {
+    this.role = role;
     return this;
   }
 }
