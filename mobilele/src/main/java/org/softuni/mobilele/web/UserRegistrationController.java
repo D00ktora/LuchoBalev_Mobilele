@@ -26,11 +26,18 @@ public class UserRegistrationController {
 
   @PostMapping("/register")
   public String register(UserRegistrationDTO userRegistrationDTO) {
-
     // TODO: Registration email with activation link
-
+    // TODO: Validation of data, currently leads to error page with code 500.
+    if (userRegistrationDTO.firstName() == null || userRegistrationDTO.firstName().trim().isEmpty() ||
+        userRegistrationDTO.lastName() == null || userRegistrationDTO.lastName().trim().isEmpty() ||
+        userRegistrationDTO.email() == null || userRegistrationDTO.email().trim().isEmpty() ||
+        userRegistrationDTO.password() == null || userRegistrationDTO.password().trim().isEmpty() ||
+        userRegistrationDTO.confirmPassword() == null || userRegistrationDTO.confirmPassword().trim().isEmpty()) {
+      return "redirect:/users/register";
+    } else if (!userRegistrationDTO.password().equals(userRegistrationDTO.confirmPassword())) {
+      return "redirect:/users/register";
+    }
     userService.registerUser(userRegistrationDTO);
-
     return "redirect:/";
   }
 

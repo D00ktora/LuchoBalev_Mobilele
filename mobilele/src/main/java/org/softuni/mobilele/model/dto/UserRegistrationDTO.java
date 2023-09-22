@@ -1,9 +1,16 @@
 package org.softuni.mobilele.model.dto;
 
-public record UserRegistrationDTO(String firstName,
-                                  String lastName,
-                                  String email,
-                                  String password,
-                                  String confirmPassword) {
+import jakarta.validation.constraints.NotNull;
 
+public record UserRegistrationDTO(
+        @NotNull
+        String firstName,
+        @NotNull
+        String lastName,
+        @NotNull
+        String email,
+        @NotNull
+        String password,
+        @NotNull
+        String confirmPassword) {
 }

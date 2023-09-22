@@ -1,9 +1,8 @@
 <!DOCTYPE html>
-<html lang="en"
-      xmlns:th="http://www.thymeleaf.org">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 
 <head>
-      <meta charset="UTF-8">
+    <meta charset="UTF-8">
     <title>MobiLeLeLe</title>
     <link rel="stylesheet" href="/css/reset-css.css"/>
     <link rel="stylesheet" href="/css/bootstrap.min.css"/>
@@ -15,7 +14,7 @@
 <body>
 
 <div>
-     <nav class="navbar navbar-expand-lg bg-dark navbar-dark fixed-top">
+    <nav class="navbar navbar-expand-lg bg-dark navbar-dark fixed-top">
         <a class="navbar-brand" href="/"><img alt="car picture" src="/img/car.png" class="logo"></a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
                 aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -36,7 +35,7 @@
                 </li>
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" href="/" id="navbarDropdown" role="button"
-                       data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                         Admin
                     </a>
                     <div class="dropdown-menu" aria-labelledby="navbarDropdown">
@@ -49,7 +48,7 @@
                 <li class="nav-item">
                     <div class="form-inline my-2 my-lg-0 border px-3">
                         <div class="logged-user"
-                             text="Welcome, Gosho"></div>
+                            text="Welcome, Gosho"></div>
                         <a class="nav-link" href="/users/logout">Logout</a>
                     </div>
                 </li>
@@ -73,8 +72,7 @@
     <form
         th:action="@{/users/register}"
         th:method="post"
-
-          class="main-form mx-auto col-md-8 d-flex flex-column justify-content-center">
+        class="main-form mx-auto col-md-8 d-flex flex-column justify-content-center">
         <div class="row">
             <div class="form-group col-md-6 mb-3">
                 <label for="firstName" class="text-white font-weight-bold">First Name</label>
@@ -82,7 +80,7 @@
                         name="firstName"
                         type="text"
                         class="form-control"
-                       placeholder="First name"/>
+                        placeholder="First name"/>
                 <p class="errors alert alert-danger">
                     First name is required.
                 </p>
@@ -90,10 +88,10 @@
             <div class="form-group col-md-6 mb-3">
                 <label for="lastName" class="text-white font-weight-bold">Last Name</label>
                 <input id="lastName"
-                       name="lastName"
-                       type="text"
-                       class="form-control"
-                       placeholder="Last name"/>
+                        name="lastName"
+                        type="text"
+                        class="form-control"
+                        placeholder="Last name"/>
                 <p class="errors alert alert-danger">
                     Last name is required.
                 </p>
@@ -103,10 +101,10 @@
             <div class="form-group col-md-6 mb-3">
                 <label for="email" class="text-white font-weight-bold">Email</label>
                 <input id="email"
-                       name="email"
-                       type="text"
-                       class="form-control"
-                       placeholder="Email"/>
+                        name="email"
+                        type="text"
+                        class="form-control"
+                        placeholder="Email"/>
                 <p class="errors alert alert-danger">
                     Email is required.
                 </p>
@@ -121,7 +119,7 @@
                     name="password"
                     type="password"
                     class="form-control"
-                       placeholder="Password"/>
+                    placeholder="Password"/>
                 <p class="errors alert alert-danger">
                     Password is required.
                 </p>
@@ -129,10 +127,10 @@
             <div class="form-group col-md-6 mb-3">
                 <label for="confirmPassword" class="text-white font-weight-bold">Confirm Password</label>
                 <input id="confirmPassword"
-                       name="confirmPassword"
-                       type="password"
-                       class="form-control"
-                       placeholder="Confirm password"/>
+                        name="confirmPassword"
+                        type="password"
+                        class="form-control"
+                        placeholder="Confirm password"/>
                 <p class="errors alert alert-danger">
                     Password confirmation is required.
                 </p>
@@ -151,7 +149,7 @@
 </div>
 
 <div>
-     <footer> </footer>
+    <footer> </footer>
 </div>
 
 </body>

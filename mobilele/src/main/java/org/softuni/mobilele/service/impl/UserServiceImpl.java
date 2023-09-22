@@ -2,29 +2,46 @@ package org.softuni.mobilele.service.impl;
 
 import org.softuni.mobilele.model.dto.UserRegistrationDTO;
 import org.softuni.mobilele.model.entity.UserEntity;
+import org.softuni.mobilele.model.entity.UserRole;
 import org.softuni.mobilele.repository.UserRepository;
+import org.softuni.mobilele.service.RoleService;
 import org.softuni.mobilele.service.UserService;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
+
+import java.time.LocalDateTime;
 
 @Service
 public class UserServiceImpl implements UserService {
 
   private final UserRepository userRepository;
+  private final RoleService roleService;
   private final PasswordEncoder passwordEncoder;
 
   public UserServiceImpl(
-      UserRepository userRepository,
-      PasswordEncoder passwordEncoder) {
+          UserRepository userRepository,
+          RoleService roleService, PasswordEncoder passwordEncoder) {
     this.userRepository = userRepository;
+    this.roleService = roleService;
     this.passwordEncoder = passwordEncoder;
   }
 
   @Override
-  public void registerUser(
-      UserRegistrationDTO userRegistrationDTO) {
+  public void registerUser(UserRegistrationDTO userRegistrationDTO) {
+    UserEntity newUser = map(userRegistrationDTO);
+    UserRole userRole = new UserRole();
 
-    userRepository.save(map(userRegistrationDTO));
+    if (userRepository.count() > 0) {
+      userRole = this.roleService.getUserRole(2L);
+    } else {
+      userRole = this.roleService.getUserRole(1L);
+    }
+
+    newUser.setRole(userRole)
+            .setCreated(LocalDateTime.now())
+            .setModified(LocalDateTime.now());
+
+    userRepository.save(newUser);
   }
 
   private UserEntity map(UserRegistrationDTO userRegistrationDTO) {
