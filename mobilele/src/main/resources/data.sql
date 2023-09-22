@@ -8,11 +8,11 @@ insert into brands (name, created, modified)
     ('Porsche', '1931-04-25', now()),
     ('Toyota', '1937-08-28', now());
 insert into models (name, category, image_url, start_year, created, modified, brand_id)
-    values ('S-Class', 1, 'https://stimg.cardekho.com/images/carexteriorimages/930x620/Mercedes-Benz/S-Class/10853/1690451611932/front-left-side-47.jpg?impolicy=resize&imwidth=420', 1972, now(), now(), 1),
-    ('X-Series', 1, 'https://www.bmw.bg/content/dam/bmw/common/all-models/x-series/x1/2022/navigation/bmw-x-series-x1-phev-modelfinder.png/jcr:content/renditions/cq5dam.resized.img.585.low.time1676309079908.png', 1999, now(), now(), 2),
-    ('Ranger', 1, 'https://hips.hearstapps.com/hmg-prod.s3.amazonaws.com/images/all-new-ford-ranger-raptor-02-1-645a6eb5b881d.jpg?crop=0.447xw:1.00xh;0.177xw,0&resize=640:*', 1983, now(), now(), 3),
-    ('Cayenne', 1, 'https://files.porsche.com/filestore/image/multimedia/none/e3-2nd-cayenne-modelimage-sideshot/model/b14f4d31-e03d-11ed-8101-005056bbdc38/porsche-model.png', 2002, now(), now(), 4),
-    ('Land Cruiser', 1, 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQx73yt-Os7Naza2rnzB1KrhBEV-yXTj_Qynw&usqp=CAU', 1951, now(), now(), 5);
+    values ('S-Class', 0, 'https://stimg.cardekho.com/images/carexteriorimages/930x620/Mercedes-Benz/S-Class/10853/1690451611932/front-left-side-47.jpg?impolicy=resize&imwidth=420', 1972, now(), now(), 1),
+    ('X-Series', 0, 'https://www.bmw.bg/content/dam/bmw/common/all-models/x-series/x1/2022/navigation/bmw-x-series-x1-phev-modelfinder.png/jcr:content/renditions/cq5dam.resized.img.585.low.time1676309079908.png', 1999, now(), now(), 2),
+    ('Ranger', 0, 'https://hips.hearstapps.com/hmg-prod.s3.amazonaws.com/images/all-new-ford-ranger-raptor-02-1-645a6eb5b881d.jpg?crop=0.447xw:1.00xh;0.177xw,0&resize=640:*', 1983, now(), now(), 3),
+    ('Cayenne', 0, 'https://files.porsche.com/filestore/image/multimedia/none/e3-2nd-cayenne-modelimage-sideshot/model/b14f4d31-e03d-11ed-8101-005056bbdc38/porsche-model.png', 2002, now(), now(), 4),
+    ('Land Cruiser', 0, 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQx73yt-Os7Naza2rnzB1KrhBEV-yXTj_Qynw&usqp=CAU', 1951, now(), now(), 5);
 insert into users (email, password, first_name, last_name, active, role_id, created, modified)
     values ('dummy1@gmail.com', 'topsecret', 'dummyFirstName1', 'dummyLastName1', true, 1, now(), now()),
     ('dummy2@gmail.com', 'topsecret', 'dummyFirstName2', 'dummyLastName2', true, 2, now(), now()),

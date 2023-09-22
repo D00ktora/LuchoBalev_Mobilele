@@ -31,8 +31,10 @@ public class Offer extends BaseEntity {
     private LocalDateTime created;
     @NotNull
     private LocalDateTime modified;
+    @NotNull
     @ManyToOne
     private Model model;
+    @NotNull
     @ManyToOne
     private UserEntity user;
 
