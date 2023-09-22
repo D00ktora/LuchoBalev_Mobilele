@@ -1,5 +1,6 @@
 package org.softuni.mobilele.service.impl;
 
+import org.softuni.mobilele.model.dto.UserLoginDTO;
 import org.softuni.mobilele.model.dto.UserRegistrationDTO;
 import org.softuni.mobilele.model.entity.UserEntity;
 import org.softuni.mobilele.model.entity.UserRole;
@@ -10,6 +11,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
+import java.util.Optional;
 
 @Service
 public class UserServiceImpl implements UserService {
@@ -42,6 +44,25 @@ public class UserServiceImpl implements UserService {
             .setModified(LocalDateTime.now());
 
     userRepository.save(newUser);
+  }
+
+  @Override
+  public UserEntity login(UserLoginDTO loginDTO) {
+    Optional<UserEntity> optionalUserEntity = userRepository.getByEmail(loginDTO.email());
+    UserEntity user = new UserEntity();
+    boolean passwordMatcher = false;
+
+    if (optionalUserEntity.isPresent()) {
+      user = optionalUserEntity.get();
+      passwordMatcher = passwordEncoder.matches(loginDTO.password(), user.getPassword());
+    } else {
+      user = null;
+    }
+
+    if (user != null && passwordMatcher) {
+      return user;
+    }
+    return null;
   }
 
   private UserEntity map(UserRegistrationDTO userRegistrationDTO) {

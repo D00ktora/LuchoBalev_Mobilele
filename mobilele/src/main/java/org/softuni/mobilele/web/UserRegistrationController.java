@@ -27,7 +27,7 @@ public class UserRegistrationController {
   @PostMapping("/register")
   public String register(UserRegistrationDTO userRegistrationDTO) {
     // TODO: Registration email with activation link
-    // TODO: Validation of data, currently leads to error page with code 500.
+    // TODO: Validation of data, currently this code needs to be replace with better one.
     if (userRegistrationDTO.firstName() == null || userRegistrationDTO.firstName().trim().isEmpty() ||
         userRegistrationDTO.lastName() == null || userRegistrationDTO.lastName().trim().isEmpty() ||
         userRegistrationDTO.email() == null || userRegistrationDTO.email().trim().isEmpty() ||
