@@ -1,5 +1,7 @@
 package org.softuni.mobilele.service.impl;
 
+import org.modelmapper.ModelMapper;
+import org.softuni.mobilele.model.dto.LoggedUserDTO;
 import org.softuni.mobilele.model.dto.UserLoginDTO;
 import org.softuni.mobilele.model.dto.UserRegistrationDTO;
 import org.softuni.mobilele.model.entity.UserEntity;
@@ -7,6 +9,7 @@ import org.softuni.mobilele.model.entity.UserRole;
 import org.softuni.mobilele.repository.UserRepository;
 import org.softuni.mobilele.service.RoleService;
 import org.softuni.mobilele.service.UserService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
@@ -19,13 +22,15 @@ public class UserServiceImpl implements UserService {
   private final UserRepository userRepository;
   private final RoleService roleService;
   private final PasswordEncoder passwordEncoder;
-
+  private final ModelMapper modelMapper;
+@Autowired
   public UserServiceImpl(
           UserRepository userRepository,
-          RoleService roleService, PasswordEncoder passwordEncoder) {
+          RoleService roleService, PasswordEncoder passwordEncoder, ModelMapper modelMapper) {
     this.userRepository = userRepository;
     this.roleService = roleService;
     this.passwordEncoder = passwordEncoder;
+    this.modelMapper = modelMapper;
   }
 
   @Override
@@ -47,7 +52,7 @@ public class UserServiceImpl implements UserService {
   }
 
   @Override
-  public UserEntity login(UserLoginDTO loginDTO) {
+  public LoggedUserDTO login(UserLoginDTO loginDTO) {
     Optional<UserEntity> optionalUserEntity = userRepository.getByEmail(loginDTO.email());
     UserEntity user = new UserEntity();
     boolean passwordMatcher = false;
@@ -60,7 +65,8 @@ public class UserServiceImpl implements UserService {
     }
 
     if (user != null && passwordMatcher) {
-      return user;
+      LoggedUserDTO loggedUser = modelMapper.map(user, LoggedUserDTO.class);
+      return loggedUser;
     }
     return null;
   }

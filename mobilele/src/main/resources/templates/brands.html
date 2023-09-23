@@ -1,8 +1,8 @@
 <!DOCTYPE html>
-<html lang="en" >
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 
 <head>
-       <meta charset="UTF-8">
+    <meta charset="UTF-8">
     <title>MobiLeLeLe</title>
     <link rel="stylesheet" href="/css/reset-css.css"/>
     <link rel="stylesheet" href="/css/bootstrap.min.css"/>
@@ -35,7 +35,7 @@
                 </li>
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" href="/" id="navbarDropdown" role="button"
-                       data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                         Admin
                     </a>
                     <div class="dropdown-menu" aria-labelledby="navbarDropdown">
@@ -48,7 +48,7 @@
                 <li class="nav-item">
                     <div class="form-inline my-2 my-lg-0 border px-3">
                         <div class="logged-user"
-                             text="Welcome, Gosho"></div>
+                            text="Welcome, Gosho"></div>
                         <a class="nav-link" href="/users/logout">Logout</a>
                     </div>
                 </li>
@@ -67,10 +67,10 @@
 
 <div class="container">
     <h2 class="text-center text-white m-3">All Brands</h2>
-    <div class='row mb-4 d-flex justify-content-around'>
+    <div th:each="brands : ${allBrands}" class='row mb-4 d-flex justify-content-around'>
         <div  class="brand-section col-md-5 mr-auto d-flex flex-column">
             <h2>Car brand:
-                <span >Brand name</span>
+                <span th:text="${brands.getName()}"></span>
             </h2>
             <div>Models:
                 <table>
@@ -82,14 +82,13 @@
                         <th>End Year</th>
                         <th>Picture</th>
                     </tr>
-                    <tr>
-                        <th>No</th>
-                        <th >Model Name</th>
-                        <th >Model Category</th>
-                        <th >Model Start Year</th>
-                        <th >Model End Year</th>
-                        <th><img alt="image" src="/"
-                                 class="img-thumbnail rounded"></th>
+                    <tr th:each="list : ${brands.getAllBrandsDTOList()}">
+                        <th th:text="${list.getId()}"></th>
+                        <th th:text="${list.getName()}"></th>
+                        <th th:text="${list.getCategory()}"></th>
+                        <th th:text="${list.getStartYear()}"></th>
+                        <th th:text="${list.getEndYear() == null} ? ${brand.getEndYear()} : ''"></th>
+                        <th><img alt="image" th:src="${list.getImageUrl()}" class="img-thumbnail rounded"></th>
                     </tr>
                 </table>
             </div>
@@ -97,7 +96,7 @@
     </div>
 
     <div>
-             <footer> </footer>
+        <footer> </footer>
     </div>
 </div>
 </body>

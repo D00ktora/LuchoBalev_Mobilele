@@ -1,8 +1,8 @@
 package org.softuni.mobilele.web;
-
-import jakarta.servlet.http.HttpServletRequest;
+;
+import jakarta.servlet.http.HttpSession;
+import org.softuni.mobilele.model.dto.LoggedUserDTO;
 import org.softuni.mobilele.model.dto.UserLoginDTO;
-import org.softuni.mobilele.model.entity.UserEntity;
 import org.softuni.mobilele.service.UserService;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -19,14 +19,14 @@ public class UserLoginController {
   }
 
   @GetMapping("/login")
-  public String login() {
+  public String login(HttpSession session) {
     return "auth-login";
   }
+
   @PostMapping("/login")
-  public String login(UserLoginDTO userLoginDTO, HttpServletRequest request) {
-    //TODO: Change UserEntity to be UserDTO in order to not expose all the field that UserEntity have.
-    UserEntity login = userService.login(userLoginDTO);
-    request.getSession().setAttribute("user", UserEntity.class);
+  public String login(UserLoginDTO userLoginDTO, HttpSession session) {
+    LoggedUserDTO login = userService.login(userLoginDTO);
+    session.setAttribute("user", login);
     return "redirect:/";
   }
 }

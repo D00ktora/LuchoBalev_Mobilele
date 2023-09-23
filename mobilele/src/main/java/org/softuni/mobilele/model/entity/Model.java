@@ -17,7 +17,7 @@ public class Model extends BaseEntity {
     @NotNull
     private String imageUrl;
     @NotNull
-    private int startYear;
+    private Integer startYear;
     private Integer endYear;
     @NotNull
     private LocalDateTime created;
@@ -54,20 +54,20 @@ public class Model extends BaseEntity {
         return this;
     }
 
-    public int getStartYear() {
+    public Integer getStartYear() {
         return startYear;
     }
 
-    public Model setStartYear(int startYear) {
+    public Model setStartYear(Integer startYear) {
         this.startYear = startYear;
         return this;
     }
 
-    public int getEndYear() {
+    public Integer getEndYear() {
         return endYear;
     }
 
-    public Model setEndYear(int endYear) {
+    public Model setEndYear(Integer endYear) {
         this.endYear = endYear;
         return this;
     }

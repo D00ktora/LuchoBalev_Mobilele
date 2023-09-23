@@ -6,5 +6,6 @@ public record UserLoginDTO(
         @NotNull
         String email,
         @NotNull
-        String password) {
+        String password,
+        String firstName) {
 }
