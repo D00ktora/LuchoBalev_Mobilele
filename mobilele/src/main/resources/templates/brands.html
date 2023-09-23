@@ -87,7 +87,7 @@
                         <th th:text="${list.getName()}"></th>
                         <th th:text="${list.getCategory()}"></th>
                         <th th:text="${list.getStartYear()}"></th>
-                        <th th:text="${list.getEndYear() == null} ? ${brand.getEndYear()} : ''"></th>
+                        <th th:text="${list.getEndYear() != null} ? ${list.getEndYear()} : ''"></th>
                         <th><img alt="image" th:src="${list.getImageUrl()}" class="img-thumbnail rounded"></th>
                     </tr>
                 </table>

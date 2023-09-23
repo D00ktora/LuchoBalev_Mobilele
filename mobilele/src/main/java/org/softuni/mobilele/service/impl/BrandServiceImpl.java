@@ -9,7 +9,9 @@ import org.softuni.mobilele.service.BrandService;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
+import java.util.LinkedHashSet;
 import java.util.List;
+import java.util.Set;
 
 @Service
 public class BrandServiceImpl implements BrandService {
@@ -23,19 +25,19 @@ public class BrandServiceImpl implements BrandService {
 
     public List<BrandsDTO> getAllBrands() {
         //TODO: To check whats happen in this.
-        BrandsDTO brandsDTO = new BrandsDTO();
         List<BrandsDTO> separatedByBrand = new ArrayList<>();
         List<AllBrandsDTO> allBrands = new ArrayList<>();
         List<Model> allBy = modelRepository.getAllBy();
-        List<String> brands = new ArrayList<>();
+        Set<String> brands = new LinkedHashSet<>();
 
         for (Model model : allBy) {
             AllBrandsDTO map = modelMapper.map(model, AllBrandsDTO.class);
-            allBrands.add(map.setName(model.getBrand().getName()));
+            allBrands.add(map.setBrand(model.getBrand().getName()));
             brands.add(model.getBrand().getName());
         }
 
         for (String brand : brands) {
+            BrandsDTO brandsDTO = new BrandsDTO();
             List<AllBrandsDTO> collect = allBrands.stream().filter(br -> br.getBrand().equals(brand)).toList();
             separatedByBrand.add(brandsDTO.setName(brand).setAllBrandsDTOList(collect));
         }
