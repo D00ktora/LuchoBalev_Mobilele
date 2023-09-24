@@ -34,11 +34,11 @@ insert into models (name, category, image_url, start_year, end_year, created, mo
     ('Century', 0, 'https://upload.wikimedia.org/wikipedia/commons/7/73/Toyota_Century_3rd_generation_2017_Tokyo_Motor_Show_front_1_%28cropped%29.jpg', 1967, null, now(), now(), 5),
     ('Corolla', 0, 'https://upload.wikimedia.org/wikipedia/commons/9/90/Toyota_Corolla_Limousine_Monrepos_2019_IMG_1908.jpg', 1966, null, now(), now(), 5);
 insert into users (email, password, first_name, last_name, active, role_id, created, modified)
-    values ('dummy1@gmail.com', 'topsecret', 'dummyFirstName1', 'dummyLastName1', true, 1, now(), now()),
-    ('dummy2@gmail.com', 'topsecret', 'dummyFirstName2', 'dummyLastName2', true, 2, now(), now()),
-    ('dummy3@gmail.com', 'topsecret', 'dummyFirstName3', 'dummyLastName3', true, 2, now(), now()),
-    ('dummy4@gmail.com', 'topsecret', 'dummyFirstName4', 'dummyLastName4', true, 2, now(), now()),
-    ('dummy5@gmail.com', 'topsecret', 'dummyFirstName5', 'dummyLastName5', true, 2, now(), now());
+    values ('stilyan@gmail.com', 'f104ff670cbadad5695fac32d62b4bbc862667f474472a3df4385c7a9bab7a87fca0fd05237c98fe4d99036fd306623c', 'Stilyan', 'Petrov', false, 1, now(), now()),
+    ('dummy2@gmail.com', '23af9eb065f9c161d68af64ff81f84422e4bc88517f56a4264d16759c27135100ef2cd9cfb2da50ff4157e9a1ef2de00', 'dummyFirstName2', 'dummyLastName2', false, 2, now(), now()),
+    ('dummy3@gmail.com', '23af9eb065f9c161d68af64ff81f84422e4bc88517f56a4264d16759c27135100ef2cd9cfb2da50ff4157e9a1ef2de00', 'dummyFirstName3', 'dummyLastName3', false, 2, now(), now()),
+    ('dummy4@gmail.com', '23af9eb065f9c161d68af64ff81f84422e4bc88517f56a4264d16759c27135100ef2cd9cfb2da50ff4157e9a1ef2de00', 'dummyFirstName4', 'dummyLastName4', false, 2, now(), now()),
+    ('dummy5@gmail.com', '23af9eb065f9c161d68af64ff81f84422e4bc88517f56a4264d16759c27135100ef2cd9cfb2da50ff4157e9a1ef2de00', 'dummyFirstName5', 'dummyLastName5', false, 2, now(), now());
 insert into offers (description, created, engine, mileage, modified, price, transmission, year, model_id, user_id)
     values ('someDummyText', now(), 2, 10000, now(), 100000, 1, 2023, 1, 1),
     ('someDummyText', now(), 1, 5000, now(), 90000, 0, 2023, 2, 2),

@@ -8,6 +8,6 @@ import org.softuni.mobilele.model.entity.UserEntity;
 public interface UserService {
 
   void registerUser(UserRegistrationDTO userRegistrationDTO);
-  LoggedUserDTO login(UserLoginDTO loginDTO);
-
+  boolean login(UserLoginDTO loginDTO);
+  void logout();
 }

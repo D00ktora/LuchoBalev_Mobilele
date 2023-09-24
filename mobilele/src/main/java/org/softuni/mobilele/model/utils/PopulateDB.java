@@ -6,8 +6,8 @@ import org.springframework.core.io.ClassPathResource;
 import org.springframework.core.io.Resource;
 import org.springframework.core.io.support.EncodedResource;
 import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Component;
-import org.springframework.stereotype.Service;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -24,7 +24,7 @@ public class PopulateDB implements CommandLineRunner {
         this.init();
     }
     @Autowired
-    public PopulateDB(JdbcTemplate jdbcTemplate, UserRepository userRepository) {
+    public PopulateDB(JdbcTemplate jdbcTemplate, PasswordEncoder passwordEncoder, UserRepository userRepository) {
         this.jdbcTemplate = jdbcTemplate;
         this.userRepository = userRepository;
     }

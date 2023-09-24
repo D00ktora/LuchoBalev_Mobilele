@@ -25,8 +25,13 @@ public class UserLoginController {
 
   @PostMapping("/login")
   public String login(UserLoginDTO userLoginDTO, HttpSession session) {
-    LoggedUserDTO login = userService.login(userLoginDTO);
-    session.setAttribute("user", login);
+    boolean login = userService.login(userLoginDTO);
+    return "redirect:/";
+  }
+
+  @GetMapping("/logout")
+  private String logout() {
+    userService.logout();
     return "redirect:/";
   }
 }

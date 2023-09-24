@@ -9,6 +9,7 @@ import org.softuni.mobilele.model.entity.UserRole;
 import org.softuni.mobilele.repository.UserRepository;
 import org.softuni.mobilele.service.RoleService;
 import org.softuni.mobilele.service.UserService;
+import org.softuni.mobilele.user.CurrentUser;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
@@ -23,15 +24,17 @@ public class UserServiceImpl implements UserService {
   private final RoleService roleService;
   private final PasswordEncoder passwordEncoder;
   private final ModelMapper modelMapper;
+  private final CurrentUser currentUser;
 @Autowired
   public UserServiceImpl(
-          UserRepository userRepository,
-          RoleService roleService, PasswordEncoder passwordEncoder, ModelMapper modelMapper) {
+        UserRepository userRepository,
+        RoleService roleService, PasswordEncoder passwordEncoder, ModelMapper modelMapper, CurrentUser currentUser) {
     this.userRepository = userRepository;
     this.roleService = roleService;
     this.passwordEncoder = passwordEncoder;
     this.modelMapper = modelMapper;
-  }
+  this.currentUser = currentUser;
+}
 
   @Override
   public void registerUser(UserRegistrationDTO userRegistrationDTO) {
@@ -52,23 +55,27 @@ public class UserServiceImpl implements UserService {
   }
 
   @Override
-  public LoggedUserDTO login(UserLoginDTO loginDTO) {
+  public boolean login(UserLoginDTO loginDTO) {
     Optional<UserEntity> optionalUserEntity = userRepository.getByEmail(loginDTO.email());
-    UserEntity user = new UserEntity();
-    boolean passwordMatcher = false;
 
-    if (optionalUserEntity.isPresent()) {
-      user = optionalUserEntity.get();
-      passwordMatcher = passwordEncoder.matches(loginDTO.password(), user.getPassword());
+    if (optionalUserEntity.isEmpty()) {
+      return false;
+    }
+
+    boolean passwordMatcher = passwordEncoder.matches(loginDTO.password(), optionalUserEntity.get().getPassword());
+
+    if (passwordMatcher) {
+      currentUser.setLoggedIn(true).
+              setName(optionalUserEntity.get().getFirstName());
     } else {
-      user = null;
+      logout();
     }
 
-    if (user != null && passwordMatcher) {
-      LoggedUserDTO loggedUser = modelMapper.map(user, LoggedUserDTO.class);
-      return loggedUser;
-    }
-    return null;
+    return passwordMatcher;
+  }
+
+  public void logout() {
+    currentUser.clear();
   }
 
   private UserEntity map(UserRegistrationDTO userRegistrationDTO) {
