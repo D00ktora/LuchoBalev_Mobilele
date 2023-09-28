@@ -51,7 +51,8 @@ public class UserServiceImpl implements UserService {
             .setCreated(LocalDateTime.now())
             .setModified(LocalDateTime.now());
 
-    userRepository.save(newUser);
+    UserEntity savedUser = userRepository.save(newUser);
+    currentUser.setLoggedIn(savedUser.isActive()).setName(savedUser.getFirstName());
   }
 
   @Override
