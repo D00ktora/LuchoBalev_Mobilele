@@ -1,5 +1,6 @@
 package org.softuni.mobilele.user;
 
+import org.softuni.mobilele.model.entity.UserRole;
 import org.springframework.stereotype.Component;
 import org.springframework.web.context.annotation.SessionScope;
 
@@ -8,6 +9,17 @@ import org.springframework.web.context.annotation.SessionScope;
 public class CurrentUser {
     private String name;
     private boolean loggedIn;
+
+    private UserRole role;
+
+    public UserRole getRole() {
+        return role;
+    }
+
+    public CurrentUser setRole(UserRole role) {
+        this.role = role;
+        return this;
+    }
 
     public String getName() {
         return name;

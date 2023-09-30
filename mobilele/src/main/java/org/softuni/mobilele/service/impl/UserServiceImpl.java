@@ -67,7 +67,8 @@ public class UserServiceImpl implements UserService {
 
     if (passwordMatcher) {
       currentUser.setLoggedIn(true).
-              setName(optionalUserEntity.get().getFirstName());
+              setName(optionalUserEntity.get().getFirstName())
+              .setRole(optionalUserEntity.get().getRole());
     } else {
       logout();
     }
