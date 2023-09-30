@@ -1,17 +1,23 @@
 package org.softuni.mobilele.model.dto;
 
+import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.NotNull;
 
 public class UserRegistrationDTO {
         @NotNull
+        @NotEmpty
         String firstName;
         @NotNull
+        @NotEmpty
         String lastName;
         @NotNull
+        @NotEmpty
         String email;
         @NotNull
+        @NotEmpty
         String password;
         @NotNull
+        @NotEmpty
         String confirmPassword;
 
         public String getFirstName() {
