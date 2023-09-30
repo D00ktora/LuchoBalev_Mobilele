@@ -15,7 +15,7 @@ public class Offer extends BaseEntity {
     @Column(columnDefinition = "text")
     private String description;
     @NotNull
-    @Enumerated(value = EnumType.ORDINAL)
+    @Enumerated(value = EnumType.STRING)
     private Engine engine;
     private String imageUrl;
     @NotNull
@@ -23,7 +23,7 @@ public class Offer extends BaseEntity {
     @NotNull
     private BigDecimal price;
     @NotNull
-    @Enumerated(value = EnumType.ORDINAL)
+    @Enumerated(value = EnumType.STRING)
     private Transmission transmission;
     @NotNull
     private int year;

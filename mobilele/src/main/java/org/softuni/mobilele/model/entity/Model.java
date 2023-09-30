@@ -12,7 +12,7 @@ public class Model extends BaseEntity {
     @NotNull
     private String name;
     @NotNull
-    @Enumerated(value = EnumType.ORDINAL)
+    @Enumerated(value = EnumType.STRING)
     private Category category;
     @NotNull
     private String imageUrl;

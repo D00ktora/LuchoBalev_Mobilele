@@ -1,6 +1,8 @@
 package org.softuni.mobilele.config;
 
+import org.modelmapper.Converter;
 import org.modelmapper.ModelMapper;
+import org.modelmapper.spi.MappingContext;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -13,5 +15,7 @@ public class AppConfig {
     return Pbkdf2PasswordEncoder.defaultsForSpringSecurity_v5_8();
   }
   @Bean
-  public ModelMapper modelMapper() {return new ModelMapper();}
+  public ModelMapper modelMapper() {
+
+    return new ModelMapper();}
 }
