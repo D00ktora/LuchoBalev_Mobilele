@@ -28,13 +28,13 @@ public class UserRegistrationController {
   public String register(UserRegistrationDTO userRegistrationDTO) {
     // TODO: Registration email with activation link
     // TODO: Validation of data, currently this code needs to be replace with better one.
-    if (userRegistrationDTO.firstName() == null || userRegistrationDTO.firstName().trim().isEmpty() ||
-        userRegistrationDTO.lastName() == null || userRegistrationDTO.lastName().trim().isEmpty() ||
-        userRegistrationDTO.email() == null || userRegistrationDTO.email().trim().isEmpty() ||
-        userRegistrationDTO.password() == null || userRegistrationDTO.password().trim().isEmpty() ||
-        userRegistrationDTO.confirmPassword() == null || userRegistrationDTO.confirmPassword().trim().isEmpty()) {
+    if (userRegistrationDTO.getFirstName() == null || userRegistrationDTO.getFirstName().trim().isEmpty() ||
+        userRegistrationDTO.getLastName() == null || userRegistrationDTO.getLastName().trim().isEmpty() ||
+        userRegistrationDTO.getEmail() == null || userRegistrationDTO.getEmail().trim().isEmpty() ||
+        userRegistrationDTO.getPassword() == null || userRegistrationDTO.getPassword().trim().isEmpty() ||
+        userRegistrationDTO.getConfirmPassword() == null || userRegistrationDTO.getConfirmPassword().trim().isEmpty()) {
       return "redirect:/users/register";
-    } else if (!userRegistrationDTO.password().equals(userRegistrationDTO.confirmPassword())) {
+    } else if (!userRegistrationDTO.getPassword().equals(userRegistrationDTO.getConfirmPassword())) {
       return "redirect:/users/register";
     }
     userService.registerUser(userRegistrationDTO);

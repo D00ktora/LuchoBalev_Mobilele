@@ -57,13 +57,13 @@ public class UserServiceImpl implements UserService {
 
   @Override
   public boolean login(UserLoginDTO loginDTO) {
-    Optional<UserEntity> optionalUserEntity = userRepository.getByEmail(loginDTO.email());
+    Optional<UserEntity> optionalUserEntity = userRepository.getByEmail(loginDTO.getEmail());
 
     if (optionalUserEntity.isEmpty()) {
       return false;
     }
 
-    boolean passwordMatcher = passwordEncoder.matches(loginDTO.password(), optionalUserEntity.get().getPassword());
+    boolean passwordMatcher = passwordEncoder.matches(loginDTO.getPassword(), optionalUserEntity.get().getPassword());
 
     if (passwordMatcher) {
       currentUser.setLoggedIn(true).
@@ -82,9 +82,9 @@ public class UserServiceImpl implements UserService {
   private UserEntity map(UserRegistrationDTO userRegistrationDTO) {
     return new UserEntity()
         .setActive(true)
-        .setFirstName(userRegistrationDTO.firstName())
-        .setLastName(userRegistrationDTO.lastName())
-        .setEmail(userRegistrationDTO.email())
-        .setPassword(passwordEncoder.encode(userRegistrationDTO.password()));
+        .setFirstName(userRegistrationDTO.getFirstName())
+        .setLastName(userRegistrationDTO.getLastName())
+        .setEmail(userRegistrationDTO.getEmail())
+        .setPassword(passwordEncoder.encode(userRegistrationDTO.getPassword()));
   }
 }
