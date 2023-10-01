@@ -24,7 +24,7 @@
                 <ul class="offer-details list-group list-group-flush">
                     <li class="list-group-item">
                         <div class="card-text"><span>• Mileage: <th:block th:text="${offer.getMileage()}"></th:block></span></div>
-                        <div class="card-text"><span>• Price: <th:block th:text="${offer.getPrice()}"></th:block></span></div>
+                        <div class="card-text"><span>• Price: <th:block th:text="${#numbers.formatDecimal(offer.getPrice(),1,2)}"></th:block></span></div>
                         <div class="card-text"><span>• Engine type: <th:block th:text="${offer.getEngine()}"></th:block></span></div>
                         <div class="card-text"><span>• Transmission type : <th:block th:text="${offer.getTransmission()}"></th:block></span></div>
                     </li>
