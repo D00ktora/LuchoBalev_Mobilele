@@ -9,8 +9,18 @@ import org.springframework.web.context.annotation.SessionScope;
 public class CurrentUser {
     private String name;
     private boolean loggedIn;
+    private String email;
 
     private UserRole role;
+
+    public String getEmail() {
+        return email;
+    }
+
+    public CurrentUser setEmail(String email) {
+        this.email = email;
+        return this;
+    }
 
     public UserRole getRole() {
         return role;

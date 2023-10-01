@@ -24,9 +24,9 @@ public class OffersController {
         this.brandService = brandService;
     }
 
-    @ModelAttribute("userModel")
+    @ModelAttribute("addOfferDTO")
     public void initialiseUserModel(Model model) {
-        model.addAttribute("userModel", new AddOfferDTO());
+        model.addAttribute("addOfferDTO", new AddOfferDTO());
     }
 
     @GetMapping("/all")
@@ -40,7 +40,7 @@ public class OffersController {
         if (!model.containsAttribute("addOfferDTO")) {
             model.addAttribute("addOfferDTO", new AddOfferDTO());
         }
-        model.addAttribute("brands", brandService.getAllBrands());
+        model.addAttribute("brands", brandService.getAllBrandsWithModels());
         return "offer-add";
     }
 
@@ -52,7 +52,7 @@ public class OffersController {
             return "redirect:/offers/add";
         }
         offerService.addOffer(addOfferDTO);
-        return "redirect: /offers/add";
+        return "redirect:/offers/add";
     }
 
     @GetMapping("/details")

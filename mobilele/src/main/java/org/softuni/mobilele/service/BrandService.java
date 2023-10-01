@@ -8,5 +8,6 @@ import java.util.List;
 
 
 public interface BrandService {
-    public List<BrandsDTO> getAllBrands();
+    List<BrandsDTO> getAllBrands();
+    List<BrandsDTO> getAllBrandsWithModels();
 }

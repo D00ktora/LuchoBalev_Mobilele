@@ -3,7 +3,10 @@ package org.softuni.mobilele.service.impl;
 import org.modelmapper.ModelMapper;
 import org.softuni.mobilele.model.dto.AllBrandsDTO;
 import org.softuni.mobilele.model.dto.BrandsDTO;
+import org.softuni.mobilele.model.dto.ModelDTO;
+import org.softuni.mobilele.model.entity.Brand;
 import org.softuni.mobilele.model.entity.Model;
+import org.softuni.mobilele.repository.BrandRepository;
 import org.softuni.mobilele.repository.ModelRepository;
 import org.softuni.mobilele.service.BrandService;
 import org.springframework.stereotype.Service;
@@ -15,10 +18,12 @@ import java.util.Set;
 
 @Service
 public class BrandServiceImpl implements BrandService {
+    private final BrandRepository brandRepository;
     private final ModelRepository modelRepository;
     private final ModelMapper modelMapper;
 
-    public BrandServiceImpl(ModelRepository modelRepository, ModelMapper modelMapper) {
+    public BrandServiceImpl(BrandRepository brandRepository, ModelRepository modelRepository, ModelMapper modelMapper) {
+        this.brandRepository = brandRepository;
         this.modelRepository = modelRepository;
         this.modelMapper = modelMapper;
     }
@@ -43,4 +48,20 @@ public class BrandServiceImpl implements BrandService {
 
         return separatedByBrand;
     }
+
+    @Override
+    public List<BrandsDTO> getAllBrandsWithModels() {
+        List<Brand> allBrands = brandRepository.getAllBy();
+        List<BrandsDTO> brandsDTOS = allBrands.stream().map(brand ->{
+            BrandsDTO map = modelMapper.map(brand, BrandsDTO.class);
+            List<Model> models = modelRepository.getAllByBrand_Id(brand.getId());
+            List<ModelDTO> mappedModels = models.stream().map(model -> modelMapper.map(model, ModelDTO.class)).toList();
+            map.setModels(mappedModels);
+            return map;
+        }).toList();
+
+        return brandsDTOS;
+    }
+
+
 }
