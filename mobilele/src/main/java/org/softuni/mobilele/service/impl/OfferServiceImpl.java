@@ -46,7 +46,7 @@ public class OfferServiceImpl implements OfferService {
 
     @Override
     public void addOffer(AddOfferDTO addOfferDTO) {
-
+        //TODO: To rework this method to use not different repository's but different services.
         Offer offer = modelMapper.map(addOfferDTO, Offer.class);
         Model model = modelRepository.findById(addOfferDTO.getModelId()).orElse(null);
         offer.setModel(model)
