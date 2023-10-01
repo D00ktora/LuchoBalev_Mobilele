@@ -3,8 +3,14 @@ package org.softuni.mobilele.model.dto;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.NotNull;
+import org.softuni.mobilele.model.dto.validator.passwordValidator.PasswordValidator;
 import org.softuni.mobilele.model.dto.validator.unicEmail.EmailValidator;
 
+@PasswordValidator(
+        first = "password",
+        second = "confirmPassword",
+        message = "Password do not match."
+)
 public class UserRegistrationDTO {
         @NotNull
         @NotEmpty
