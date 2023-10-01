@@ -1,6 +1,8 @@
 package org.softuni.mobilele.service.impl;
 
 import org.modelmapper.ModelMapper;
+import org.softuni.mobilele.model.dto.AddOfferDTO;
+import org.softuni.mobilele.model.dto.BrandsDTO;
 import org.softuni.mobilele.model.dto.OfferDTO;
 import org.softuni.mobilele.model.entity.Offer;
 import org.softuni.mobilele.repository.OfferRepository;
@@ -28,5 +30,10 @@ public class OfferServiceImpl implements OfferService {
             return offerDTOS;
         }
         return null;
+    }
+
+    @Override
+    public void addOffer(AddOfferDTO addOfferDTO) {
+
     }
 }

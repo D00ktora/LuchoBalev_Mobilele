@@ -24,7 +24,6 @@ public class BrandServiceImpl implements BrandService {
     }
 
     public List<BrandsDTO> getAllBrands() {
-        //TODO: To check whats happen in this.
         List<BrandsDTO> separatedByBrand = new ArrayList<>();
         List<AllBrandsDTO> allBrands = new ArrayList<>();
         List<Model> allBy = modelRepository.getAllBy();
