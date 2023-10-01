@@ -52,7 +52,7 @@ public class OffersController {
             return "redirect:/offers/add";
         }
         offerService.addOffer(addOfferDTO);
-        return "redirect:/offers/add";
+        return "redirect:/offers/all";
     }
 
     @GetMapping("/details")
