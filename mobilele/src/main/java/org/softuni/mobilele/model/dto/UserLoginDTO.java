@@ -8,11 +8,21 @@ public class UserLoginDTO {
         @NotNull
         @Size(min = 2, max = 50)
         @Email
-        String email;
+        private String email;
         @NotNull
         @Size(min = 2, max = 20)
-        String password;
-        String firstName;
+        private String password;
+        private String firstName;
+        private String lastName;
+
+        public String getLastName() {
+                return lastName;
+        }
+
+        public UserLoginDTO setLastName(String lastName) {
+                this.lastName = lastName;
+                return this;
+        }
 
         public String getEmail() {
                 return email;

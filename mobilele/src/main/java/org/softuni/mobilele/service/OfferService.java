@@ -9,4 +9,6 @@ import java.util.List;
 public interface OfferService {
     List<OfferDTO> getAllOffers();
     void addOffer(AddOfferDTO addOfferDTO);
+
+    OfferDTO getOfferById(Long id);
 }

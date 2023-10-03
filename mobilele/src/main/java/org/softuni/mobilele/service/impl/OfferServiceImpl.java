@@ -15,6 +15,7 @@ import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class OfferServiceImpl implements OfferService {
@@ -55,5 +56,13 @@ public class OfferServiceImpl implements OfferService {
                 .setUser(userRepository.getByEmail(currentUser.getEmail()).orElse(null))
                 .setId(null);
         offerRepository.save(offer);
+    }
+
+    @Override
+    public OfferDTO getOfferById(Long id) {
+        Optional<Offer> optionalOffer = offerRepository.findById(id);
+        OfferDTO offerDTO = modelMapper.map(optionalOffer, OfferDTO.class);
+
+        return offerDTO;
     }
 }

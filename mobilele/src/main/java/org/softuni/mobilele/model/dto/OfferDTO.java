@@ -1,6 +1,9 @@
 package org.softuni.mobilele.model.dto;
 
+import java.time.LocalDateTime;
+
 public class OfferDTO {
+    private Long id;
     private ModelDTO model;
     private Integer year;
     private Integer mileage;
@@ -8,6 +11,45 @@ public class OfferDTO {
     private String  engine;
     private String  transmission;
     private String imageUrl;
+    private String  created;
+    private String modified;
+    private UserLoginDTO user;
+
+    public String getCreated() {
+        return created;
+    }
+
+    public OfferDTO setCreated(String created) {
+        this.created = created;
+        return this;
+    }
+
+    public String getModified() {
+        return modified;
+    }
+
+    public OfferDTO setModified(String modified) {
+        this.modified = modified;
+        return this;
+    }
+
+    public UserLoginDTO getUser() {
+        return user;
+    }
+
+    public OfferDTO setUser(UserLoginDTO user) {
+        this.user = user;
+        return this;
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public OfferDTO setId(Long id) {
+        this.id = id;
+        return this;
+    }
 
     public String getImageUrl() {
         return imageUrl;
