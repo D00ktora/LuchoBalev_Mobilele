@@ -62,7 +62,23 @@ public class OfferServiceImpl implements OfferService {
     public OfferDTO getOfferById(Long id) {
         Optional<Offer> optionalOffer = offerRepository.findById(id);
         OfferDTO offerDTO = modelMapper.map(optionalOffer, OfferDTO.class);
-
         return offerDTO;
     }
+
+    @Override
+    public void update(AddOfferDTO addOfferDTO, OfferDTO offerDTO) {
+        Offer offer = modelMapper.map(addOfferDTO, Offer.class);
+        Model model = modelRepository.findById(addOfferDTO.getModelId()).orElse(null);
+        offer.setModel(model)
+                .setCreated(offer.getCreated() == null ? LocalDateTime.now() : offer.getCreated())
+                .setModified(LocalDateTime.now())
+                .setUser(userRepository.getByEmail(currentUser.getEmail()).orElse(null))
+                .setId(offerDTO.getId());
+        Offer rawOffer = offerRepository.findById(offerDTO.getId()).orElse(null).setModified(LocalDateTime.now());
+        offer.setCreated(rawOffer.getCreated());
+        modelMapper.map(offer, rawOffer);
+        offerRepository.save(rawOffer);
+    }
+
+
 }

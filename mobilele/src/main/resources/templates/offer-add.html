@@ -26,7 +26,7 @@
                         name="modelId"
                         th:errorclass="is-invalid"
                         class="form-control">
-                    <option value="">- Select a model -</option>
+                    <option th:value="${addOfferDTO}">- Select a model -</option>
                     <optgroup
                             th:each="brand : ${brands}"
                             th:label="${brand.name}">

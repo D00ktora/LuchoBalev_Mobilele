@@ -39,10 +39,10 @@ insert into users (email, password, first_name, last_name, active, role_id, crea
     ('dummy3@gmail.com', '23af9eb065f9c161d68af64ff81f84422e4bc88517f56a4264d16759c27135100ef2cd9cfb2da50ff4157e9a1ef2de00', 'dummyFirstName3', 'dummyLastName3', false, 2, now(), now()),
     ('dummy4@gmail.com', '23af9eb065f9c161d68af64ff81f84422e4bc88517f56a4264d16759c27135100ef2cd9cfb2da50ff4157e9a1ef2de00', 'dummyFirstName4', 'dummyLastName4', false, 2, now(), now()),
     ('dummy5@gmail.com', '23af9eb065f9c161d68af64ff81f84422e4bc88517f56a4264d16759c27135100ef2cd9cfb2da50ff4157e9a1ef2de00', 'dummyFirstName5', 'dummyLastName5', false, 2, now(), now());
-insert into offers (description, created, engine, mileage, modified, price, transmission, year, model_id, user_id)
-    values ('someDummyText', now(), 'ELECTRIC', 10000, now(), 100000, 'AUTOMATIC', 2023, 1, 1),
-    ('someDummyText', now(), 'DIESEL', 5000, now(), 90000, 'MANUAL', 2023, 2, 2),
-    ('someDummyText', now(), 'HYBRID', 12000, now(), 80000, 'AUTOMATIC', 2023, 3, 3),
-    ('someDummyText', now(), 'GASOLINE', 8000, now(), 70000, 'MANUAL', 2023, 4, 4),
-    ('someDummyText', now(), 'GASOLINE', 13000, now(), 60000, 'MANUAL', 2023, 5, 5);
+insert into offers (image_url, description, created, engine, mileage, modified, price, transmission, year, model_id, user_id)
+    values ('https://stimg.cardekho.com/images/carexteriorimages/930x620/Mercedes-Benz/S-Class/10853/1690451611932/front-left-side-47.jpg?impolicy=resize&imwidth=420' ,'someDummyText', now(), 'ELECTRIC', 10000, now(), 100000, 'AUTOMATIC', 2023, 1, 1),
+    ('https://www.autocar.co.uk/sites/autocar.co.uk/files/styles/gallery_slide/public/1-mercedes-benz-gla-2020-fd-hero-front.jpg?itok=f3IUj8UA', 'someDummyText', now(), 'DIESEL', 5000, now(), 90000, 'MANUAL', 2023, 2, 2),
+    ('https://images.hgmsites.net/lrg/2022-mercedes-benz-c-class-c-300-sedan-angular-front-exterior-view_100847662_l.jpg', 'someDummyText', now(), 'HYBRID', 12000, now(), 80000, 'AUTOMATIC', 2023, 3, 3),
+    ('https://stimg.cardekho.com/images/carexteriorimages/930x620/Mercedes-Benz/E-Class/10855/1690452177573/front-left-side-47.jpg', 'someDummyText', now(), 'GASOLINE', 8000, now(), 70000, 'MANUAL', 2023, 4, 4),
+    ('https://www.autocar.co.uk/sites/autocar.co.uk/files/styles/gallery_slide/public/1-mercedes-benz-g-class-2019-rt-hero-front.jpg?itok=kG4plfw1', 'someDummyText', now(), 'GASOLINE', 13000, now(), 60000, 'MANUAL', 2023, 5, 5);
 

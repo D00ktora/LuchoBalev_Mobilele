@@ -14,6 +14,16 @@ public class OfferDTO {
     private String  created;
     private String modified;
     private UserLoginDTO user;
+    private String description;
+
+    public String getDescription() {
+        return description;
+    }
+
+    public OfferDTO setDescription(String description) {
+        this.description = description;
+        return this;
+    }
 
     public String getCreated() {
         return created;

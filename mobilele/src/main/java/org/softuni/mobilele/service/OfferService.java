@@ -11,4 +11,6 @@ public interface OfferService {
     void addOffer(AddOfferDTO addOfferDTO);
 
     OfferDTO getOfferById(Long id);
+
+    void update(AddOfferDTO addOfferDTO, OfferDTO offerDTO);
 }

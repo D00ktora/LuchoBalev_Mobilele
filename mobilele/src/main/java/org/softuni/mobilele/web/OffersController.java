@@ -2,6 +2,7 @@ package org.softuni.mobilele.web;
 
 import jakarta.validation.Valid;
 import org.softuni.mobilele.model.dto.AddOfferDTO;
+import org.softuni.mobilele.model.dto.OfferDTO;
 import org.softuni.mobilele.service.BrandService;
 import org.softuni.mobilele.service.OfferService;
 import org.springframework.stereotype.Controller;
@@ -60,9 +61,24 @@ public class OffersController {
         return "details";
     }
 
-    @GetMapping("/update")
-    public String update() {
+    @GetMapping("/details/{id}/update")
+    public String update(@PathVariable Long id, Model model) {
+        if (!model.containsAttribute("offerDTO")) {
+            model.addAttribute("offerDTO", offerService.getOfferById(id));
+        }
+        model.addAttribute("brands", brandService.getAllBrandsWithModels());
         return "update";
+    }
+
+    @PostMapping("/details/{id}/update")
+    public String update(@Valid AddOfferDTO addOfferDTO, BindingResult bindingResult, RedirectAttributes redirectAttributes, OfferDTO offerDTO) {
+        if (bindingResult.hasErrors()) {
+            redirectAttributes.addFlashAttribute("addOfferDTO", addOfferDTO);
+            redirectAttributes.addFlashAttribute("org.springframework.validation.BindingResult.addOfferDTO", bindingResult);
+            return "redirect:/offers/details/{id}/update";
+        }
+        offerService.update(addOfferDTO, offerDTO);
+        return "redirect:/offers/details/{id}";
     }
 
     @GetMapping("/delete")
