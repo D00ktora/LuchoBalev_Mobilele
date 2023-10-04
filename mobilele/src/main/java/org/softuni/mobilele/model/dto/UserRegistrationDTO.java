@@ -3,6 +3,7 @@ package org.softuni.mobilele.model.dto;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Size;
 import org.softuni.mobilele.model.dto.validator.passwordValidator.PasswordValidator;
 import org.softuni.mobilele.model.dto.validator.unicEmail.EmailValidator;
 
@@ -21,6 +22,7 @@ public class UserRegistrationDTO {
         @NotEmpty(message = "Email should be provided!")
         @Email(message = "Email should be valid!")
         @EmailValidator(message = "Email should be unique!")
+        @Size(min = 2)
         String email;
         @NotNull
         @NotEmpty

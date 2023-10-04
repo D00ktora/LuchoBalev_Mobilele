@@ -1,7 +1,9 @@
 package org.softuni.mobilele.model.entity;
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Size;
 
 import javax.management.relation.Role;
 import java.time.LocalDateTime;
@@ -9,23 +11,24 @@ import java.time.LocalDateTime;
 @Entity
 @Table(name = "users")
 public class UserEntity extends BaseEntity {
-  @NotNull
+
+  @Column(nullable = false, unique = true)
+  @Size(min = 2)
+  @Email
   private String email;
-  @NotNull
+  @Column(nullable = false)
   private String password;
-  @NotNull
+  @Column(nullable = false)
   private String firstName;
-  @NotNull
+  @Column(nullable = false)
   private String lastName;
-  @NotNull
   private boolean active;
-  @NotNull
-  @ManyToOne
+  @ManyToOne(optional = false)
   private UserRole role;
   private String imageUrl;
-  @NotNull
+  @Column(nullable = false)
   private LocalDateTime created;
-  @NotNull
+  @Column(nullable = false)
   private LocalDateTime modified;
 
   public String getEmail() {
