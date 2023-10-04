@@ -80,5 +80,13 @@ public class OfferServiceImpl implements OfferService {
         offerRepository.save(rawOffer);
     }
 
+    @Override
+    public void delete(OfferDTO offerDTO) {
+        Offer offer = offerRepository.findById(offerDTO.getId()).orElse(null);
+        if (offer != null && currentUser.isLoggedIn()) {
+            offerRepository.delete(offer);
+        }
+    }
+
 
 }

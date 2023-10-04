@@ -81,8 +81,13 @@ public class OffersController {
         return "redirect:/offers/details/{id}";
     }
 
-    @GetMapping("/delete")
-    public String delete() {
-        return "offers";
+    @GetMapping("/details/{id}/delete")
+    public String delete(@PathVariable Long id, Model model, OfferDTO offerDTO) {
+        if (model.containsAttribute("offerDTO")) {
+            model.addAttribute("offerDTO", offerService.getOfferById(id));
+        }
+        model.addAttribute("brands", brandService.getAllBrandsWithModels());
+        offerService.delete(offerDTO);
+        return "redirect:/offers/all";
     }
 }

@@ -33,7 +33,7 @@
             </ul>
             <div class="card-body">
                 <a class="card-link" th:href="@{/offers/details/{id}/update(id=${offerDTO.getId()})}">Update</a>
-                <a class="card-link" href="/offers/all">Delete</a>
+                <a class="card-link" th:href="@{/offers/details/{id}/delete(id=${offerDTO.getId()})}">Delete</a>
             </div>
         </div>
         <div class="offer card col-sm-2 col-md-3  col-lg-4 m-1 p-0">
