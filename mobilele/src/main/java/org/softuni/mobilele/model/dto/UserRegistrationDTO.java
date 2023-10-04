@@ -20,9 +20,9 @@ public class UserRegistrationDTO {
         @NotEmpty
         String lastName;
         @NotEmpty(message = "Email should be provided!")
-        @Email(message = "Email should be valid!")
-        @EmailValidator(message = "Email should be unique!")
-        @Size(min = 2)
+        @Email(message = "Email should be valid")
+        @EmailValidator(message = "Email address already exist.")
+        @Size(min = 2, message = "")
         String email;
         @NotNull
         @NotEmpty
