@@ -10,4 +10,5 @@ public interface UserService {
   void registerUser(UserRegistrationDTO userRegistrationDTO);
   boolean login(UserLoginDTO loginDTO);
   void logout();
+  UserEntity getByEmail(String email);
 }

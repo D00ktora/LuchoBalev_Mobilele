@@ -9,7 +9,9 @@ import org.softuni.mobilele.repository.ModelRepository;
 import org.softuni.mobilele.repository.OfferRepository;
 import org.softuni.mobilele.repository.UserRepository;
 import org.softuni.mobilele.service.BrandService;
+import org.softuni.mobilele.service.ModelService;
 import org.softuni.mobilele.service.OfferService;
+import org.softuni.mobilele.service.UserService;
 import org.softuni.mobilele.user.CurrentUser;
 import org.springframework.stereotype.Service;
 
@@ -20,17 +22,15 @@ import java.util.Optional;
 @Service
 public class OfferServiceImpl implements OfferService {
     public final CurrentUser currentUser;
-    private final UserRepository userRepository;
-    private final ModelRepository modelRepository;
-    private final BrandService brandService;
+    private final UserService userService;
+    private final ModelService modelService;
     private final OfferRepository offerRepository;
     private final ModelMapper modelMapper;
 
-    public OfferServiceImpl(CurrentUser currentUser, UserRepository userRepository, ModelRepository modelRepository, BrandService brandService, OfferRepository offerRepository, ModelMapper modelMapper) {
+    public OfferServiceImpl(CurrentUser currentUser, UserService userService, ModelService modelService, OfferRepository offerRepository, ModelMapper modelMapper) {
         this.currentUser = currentUser;
-        this.userRepository = userRepository;
-        this.modelRepository = modelRepository;
-        this.brandService = brandService;
+        this.userService = userService;
+        this.modelService = modelService;
         this.offerRepository = offerRepository;
         this.modelMapper = modelMapper;
     }
@@ -49,11 +49,11 @@ public class OfferServiceImpl implements OfferService {
     public void addOffer(AddOfferDTO addOfferDTO) {
         //TODO: To rework this method to use not different repository's but different services.
         Offer offer = modelMapper.map(addOfferDTO, Offer.class);
-        Model model = modelRepository.findById(addOfferDTO.getModelId()).orElse(null);
+        Model model = modelService.findById(addOfferDTO.getModelId());
         offer.setModel(model)
                 .setCreated(LocalDateTime.now())
                 .setModified(LocalDateTime.now())
-                .setUser(userRepository.getByEmail(currentUser.getEmail()).orElse(null))
+                .setUser(userService.getByEmail(currentUser.getEmail()))
                 .setId(null);
         offerRepository.save(offer);
     }
@@ -68,11 +68,11 @@ public class OfferServiceImpl implements OfferService {
     @Override
     public void update(AddOfferDTO addOfferDTO, OfferDTO offerDTO) {
         Offer offer = modelMapper.map(addOfferDTO, Offer.class);
-        Model model = modelRepository.findById(addOfferDTO.getModelId()).orElse(null);
+        Model model = modelService.findById(addOfferDTO.getModelId());
         offer.setModel(model)
                 .setCreated(offer.getCreated() == null ? LocalDateTime.now() : offer.getCreated())
                 .setModified(LocalDateTime.now())
-                .setUser(userRepository.getByEmail(currentUser.getEmail()).orElse(null))
+                .setUser(userService.getByEmail(currentUser.getEmail()))
                 .setId(offerDTO.getId());
         Offer rawOffer = offerRepository.findById(offerDTO.getId()).orElse(null).setModified(LocalDateTime.now());
         offer.setCreated(rawOffer.getCreated());

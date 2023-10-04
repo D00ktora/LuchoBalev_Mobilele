@@ -9,6 +9,7 @@ import org.softuni.mobilele.model.entity.Model;
 import org.softuni.mobilele.repository.BrandRepository;
 import org.softuni.mobilele.repository.ModelRepository;
 import org.softuni.mobilele.service.BrandService;
+import org.softuni.mobilele.service.ModelService;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -19,19 +20,19 @@ import java.util.Set;
 @Service
 public class BrandServiceImpl implements BrandService {
     private final BrandRepository brandRepository;
-    private final ModelRepository modelRepository;
+    private final ModelService modelService;
     private final ModelMapper modelMapper;
 
-    public BrandServiceImpl(BrandRepository brandRepository, ModelRepository modelRepository, ModelMapper modelMapper) {
+    public BrandServiceImpl(BrandRepository brandRepository, ModelService modelService, ModelMapper modelMapper) {
         this.brandRepository = brandRepository;
-        this.modelRepository = modelRepository;
+        this.modelService = modelService;
         this.modelMapper = modelMapper;
     }
 
     public List<BrandsDTO> getAllBrands() {
         List<BrandsDTO> separatedByBrand = new ArrayList<>();
         List<AllBrandsDTO> allBrands = new ArrayList<>();
-        List<Model> allBy = modelRepository.getAllBy();
+        List<Model> allBy = modelService.getAll();
         Set<String> brands = new LinkedHashSet<>();
 
         for (Model model : allBy) {
@@ -54,7 +55,7 @@ public class BrandServiceImpl implements BrandService {
         List<Brand> allBrands = brandRepository.getAllBy();
         List<BrandsDTO> brandsDTOS = allBrands.stream().map(brand ->{
             BrandsDTO map = modelMapper.map(brand, BrandsDTO.class);
-            List<Model> models = modelRepository.getAllByBrand_Id(brand.getId());
+            List<Model> models = modelService.getAllById(brand.getId());
             List<ModelDTO> mappedModels = models.stream().map(model -> modelMapper.map(model, ModelDTO.class)).toList();
             map.setModels(mappedModels);
             return map;

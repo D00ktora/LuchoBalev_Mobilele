@@ -81,6 +81,11 @@ public class UserServiceImpl implements UserService {
     currentUser.clear();
   }
 
+  @Override
+  public UserEntity getByEmail(String email) {
+    return userRepository.getByEmail(email).orElse(null);
+  }
+
   private UserEntity map(UserRegistrationDTO userRegistrationDTO) {
     return new UserEntity()
         .setActive(true)
