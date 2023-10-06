@@ -24,7 +24,7 @@ public class UserServiceImpl implements UserService {
   private final RoleService roleService;
   private final PasswordEncoder passwordEncoder;
   private final ModelMapper modelMapper;
-  private final CurrentUser currentUser;
+  private CurrentUser currentUser;
 @Autowired
   public UserServiceImpl(
         UserRepository userRepository,
@@ -66,10 +66,11 @@ public class UserServiceImpl implements UserService {
     boolean passwordMatcher = passwordEncoder.matches(loginDTO.getPassword(), optionalUserEntity.get().getPassword());
 
     if (passwordMatcher) {
-      currentUser.setLoggedIn(true).
-              setName(optionalUserEntity.get().getFirstName())
-              .setRole(optionalUserEntity.get().getRole())
-              .setEmail(optionalUserEntity.get().getEmail());
+      currentUser.login(optionalUserEntity.get());
+//      currentUser.setLoggedIn(true).
+//              setName(optionalUserEntity.get().getFirstName())
+//              .setRole(optionalUserEntity.get().getRole())
+//              .setEmail(optionalUserEntity.get().getEmail());
     } else {
       logout();
     }

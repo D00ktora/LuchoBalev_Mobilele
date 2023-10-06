@@ -34,7 +34,7 @@ public class UserLoginController {
   }
 
   @PostMapping("/login")
-  public String login(@Valid UserLoginDTO userLoginDTO, BindingResult bindingResult, RedirectAttributes redirectAttributes) {
+  public String login(@Valid UserLoginDTO userLoginDTO, BindingResult bindingResult, RedirectAttributes redirectAttributes, HttpSession session) {
 
     if (bindingResult.hasErrors()) {
       redirectAttributes.addFlashAttribute("userModel", userLoginDTO);
